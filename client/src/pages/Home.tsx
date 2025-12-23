@@ -2,6 +2,13 @@ import { motion } from "framer-motion";
 import { ArrowRight, BookOpen, Clock, Heart, Star, Utensils, Gift, ChefHat } from "lucide-react";
 import heroImage from "@assets/generated_images/festive_christmas_dinner_table_editorial_shot.png";
 import cookieImage from "@assets/generated_images/festive_gingerbread_cookies_editorial_shot.png";
+import turkeyImage from "@assets/generated_images/golden_roasted_chester_turkey_platter.png";
+import codGratinImage from "@assets/generated_images/creamy_cod_gratin_with_potatoes.png";
+import porkLoinImage from "@assets/generated_images/tender_sliced_pork_loin_roast.png";
+import filetMignonImage from "@assets/generated_images/filet_mignon_in_wine_sauce.png";
+import frenchToastImage from "@assets/generated_images/golden_french_toast_breakfast_stack.png";
+import buttersCooki from "@assets/generated_images/decorated_christmas_butter_cookies.png";
+import cheesecakeImage from "@assets/generated_images/christmas_red_fruit_cheesecake.png";
 
 // Animation variants
 const fadeIn = {
@@ -26,9 +33,57 @@ const staggerContainer = {
   }
 };
 
+// Floating cookie animation
+const floatingCookie = {
+  animate: {
+    y: [0, -20, 0],
+    x: [0, 10, 0],
+    rotate: [0, 5, 0],
+  },
+  transition: {
+    duration: 4,
+    repeat: Infinity,
+    ease: [0.42, 0, 0.58, 1] as [number, number, number, number]
+  }
+};
+
+// Decorative floating elements
+const DecorativeCookies = () => {
+  const cookies = [
+    { id: 1, top: "10%", left: "5%", delay: 0 },
+    { id: 2, top: "20%", right: "8%", delay: 0.5 },
+    { id: 3, bottom: "15%", left: "12%", delay: 1 },
+    { id: 4, top: "60%", right: "5%", delay: 1.5 },
+  ];
+
+  return (
+    <>
+      {cookies.map((cookie) => (
+        <motion.div
+          key={cookie.id}
+          animate={floatingCookie.animate}
+          transition={{ ...floatingCookie.transition, delay: cookie.delay }}
+          className="fixed pointer-events-none opacity-70 z-0"
+          style={{
+            top: cookie.top,
+            left: cookie.left,
+            right: cookie.right,
+            bottom: cookie.bottom,
+          }}
+        >
+          <div className="text-4xl">🍪</div>
+        </motion.div>
+      ))}
+    </>
+  );
+};
+
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans overflow-x-hidden selection:bg-primary/20">
+    <div className="min-h-screen bg-background text-foreground font-sans overflow-x-hidden selection:bg-primary/20 relative">
+      
+      {/* Decorative floating cookies */}
+      <DecorativeCookies />
       
       {/* Navigation */}
       <nav className="fixed w-full z-50 bg-background/90 backdrop-blur-sm border-b border-border/40">
@@ -42,14 +97,14 @@ export default function Home() {
             <a href="#about" className="hover:text-primary transition-colors">Sobre</a>
             <a href="#testimonials" className="hover:text-primary transition-colors">Histórias</a>
           </div>
-          <button className="bg-primary text-primary-foreground px-6 py-2.5 rounded-sm font-medium hover:bg-primary/90 transition-all shadow-sm cursor-pointer">
+          <button className="bg-primary text-primary-foreground px-6 py-2.5 rounded-sm font-medium hover:bg-primary/90 transition-all shadow-sm cursor-pointer relative z-10">
             Comprar E-book
           </button>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 overflow-hidden">
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 overflow-hidden z-10">
         <div className="container mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div 
             initial="hidden"
@@ -108,7 +163,7 @@ export default function Home() {
       </section>
 
       {/* Philosophy / Introduction */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white relative z-10">
         <div className="container mx-auto px-6 text-center max-w-3xl">
           <Star className="w-8 h-8 text-secondary mx-auto mb-6" />
           <h2 className="text-3xl md:text-4xl font-serif mb-6 leading-tight">
@@ -121,7 +176,7 @@ export default function Home() {
       </section>
 
       {/* Features Grid */}
-      <section id="features" className="py-24 px-6 bg-background">
+      <section id="features" className="py-24 px-6 bg-background relative z-10">
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-3 gap-12">
             {[
@@ -159,8 +214,299 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Main Dishes Section */}
+      <section id="recipes" className="py-24 px-6 bg-white relative z-10">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl md:text-5xl font-serif text-center mb-16">Pratos Principais que Impressionam</h2>
+          
+          {/* Chester Turkey */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="order-2 lg:order-1"
+            >
+              <h3 className="text-3xl font-serif mb-4">Chester Assado Dourado</h3>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                O clássico natalino reinventado. Nosso chester assado apresenta uma pele crocante dourada e carne macia e suculenta. Incluímos o segredo para um resultado perfeito a cada vez.
+              </p>
+              <ul className="space-y-3">
+                {["Tempo de preparo: 3 horas", "Marinada de especiarias festivas", "Técnica de assado uniforme"].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-foreground">
+                    <span className="w-2 h-2 bg-primary rounded-full" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="order-1 lg:order-2 relative"
+            >
+              <div className="relative aspect-square rounded-sm overflow-hidden shadow-xl">
+                <img 
+                  src={turkeyImage} 
+                  alt="Chester dourado assado" 
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Cod Gratin */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="relative aspect-square rounded-sm overflow-hidden shadow-xl">
+                <img 
+                  src={codGratinImage} 
+                  alt="Bacalau à Gomes de Sá" 
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-3xl font-serif mb-4">Bacalau Gratin com Batatas</h3>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                Uma receita clássica portuguesa com toque festivo. Bacalau macio em camadas com batata cremosa e um gratin irresistível que derrete na boca.
+              </p>
+              <ul className="space-y-3">
+                {["Bacalau desfiado delicadamente", "Molho cremoso caseiro", "Cobertura dourada crocante"].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-foreground">
+                    <span className="w-2 h-2 bg-primary rounded-full" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+
+          {/* Pork Loin */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="order-2 lg:order-1"
+            >
+              <h3 className="text-3xl font-serif mb-4">Lombo Suíno Macio e Suculento</h3>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                O corte perfeito para impressionar. Nosso lombo suíno é temperado com ervas festivas e assado até ficar macio por dentro e com crosta delicada por fora.
+              </p>
+              <ul className="space-y-3">
+                {["Marinada com ervas frescas", "Temperatura perfeita garantida", "Acompanhamentos sugeridos"].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-foreground">
+                    <span className="w-2 h-2 bg-primary rounded-full" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="order-1 lg:order-2 relative"
+            >
+              <div className="relative aspect-square rounded-sm overflow-hidden shadow-xl">
+                <img 
+                  src={porkLoinImage} 
+                  alt="Lombo suíno assado" 
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Savory Dishes Section */}
+      <section className="py-24 px-6 bg-secondary/5 relative z-10">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl md:text-5xl font-serif text-center mb-16">Pratos Refinados para o Paladar</h2>
+          
+          {/* Filet Mignon */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="order-2 lg:order-1"
+            >
+              <h3 className="text-3xl font-serif mb-4">File Mignon ao Molho de Vinho</h3>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                Elegância em cada garfada. Carnes nobres seladas ao ponto certo e cobertas com um molho de vinho tinto encorpado que complementa perfeitamente o sabor natural da carne.
+              </p>
+              <ul className="space-y-3">
+                {["Seleção premium de carnes", "Molho reduzido artesanalmente", "Acompanhamentos sofisticados"].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-foreground">
+                    <span className="w-2 h-2 bg-primary rounded-full" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="order-1 lg:order-2 relative"
+            >
+              <div className="relative aspect-square rounded-sm overflow-hidden shadow-xl">
+                <img 
+                  src={filetMignonImage} 
+                  alt="File mignon ao molho de vinho" 
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sweets Section */}
+      <section className="py-24 px-6 bg-white relative z-10">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl md:text-5xl font-serif text-center mb-16">Doces que Encantam</h2>
+          
+          {/* French Toast */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="relative aspect-square rounded-sm overflow-hidden shadow-xl">
+                <img 
+                  src={frenchToastImage} 
+                  alt="Torradas francesas douradas" 
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-3xl font-serif mb-4">Torradas Francesas Douradas</h3>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                Perfeitas para um café da manhã ou brunch festivo. Nossas torradas francesas são feitas com pão brioche macio, ovos e especiarias de café da manhã que criam um exterior crocante e interior macio.
+              </p>
+              <ul className="space-y-3">
+                {["Pão brioche de qualidade", "Calda de xarope caseira", "Acompanhamentos deliciosos"].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-foreground">
+                    <span className="w-2 h-2 bg-primary rounded-full" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+
+          {/* Christmas Cookies */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="order-2 lg:order-1"
+            >
+              <h3 className="text-3xl font-serif mb-4">Biscoitos de Manteiga Natalinos Decorados</h3>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                Arte e sabor em cada biscoito. Nossas receitas de biscoitos amanteigados incluem variações de formas e cores, com glacê real para decorações deslumbrantes que são perfeitas para presentear.
+              </p>
+              <ul className="space-y-3">
+                {["Receita clássica amanteigada", "Técnicas de decoração com glacê", "Sugestões de formas temáticas"].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-foreground">
+                    <span className="w-2 h-2 bg-primary rounded-full" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="order-1 lg:order-2 relative"
+            >
+              <div className="relative aspect-square rounded-sm overflow-hidden shadow-xl">
+                <img 
+                  src={buttersCooki} 
+                  alt="Biscoitos de manteiga decorados" 
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Cheesecake */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="relative aspect-square rounded-sm overflow-hidden shadow-xl">
+                <img 
+                  src={cheesecakeImage} 
+                  alt="Cheesecake de frutas vermelhas" 
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-3xl font-serif mb-4">Cheesecake de Frutas Vermelhas Natalina</h3>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                Sofisticação em cada fatia. Nossas receitas de cheesecake combinam uma base crocante com creme macio e frutas vermelhas que trazem uma acidez perfeita que complementa a riqueza do queijo.
+              </p>
+              <ul className="space-y-3">
+                {["Base de biscoito crocante", "Creme de queijo cremoso", "Calda de frutas vermelhas"].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-foreground">
+                    <span className="w-2 h-2 bg-primary rounded-full" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Visual Break / Cookie Section */}
-      <section className="py-24 px-6 bg-secondary/5 relative overflow-hidden">
+      <section className="py-24 px-6 bg-secondary/5 relative overflow-hidden z-10">
         <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1 relative">
              <div className="relative aspect-square rounded-sm overflow-hidden shadow-xl rotate-1 hover:rotate-0 transition-transform duration-500">
@@ -192,7 +538,7 @@ export default function Home() {
       </section>
 
       {/* Testimonial */}
-      <section id="testimonials" className="py-32 px-6 bg-background">
+      <section id="testimonials" className="py-32 px-6 bg-background relative z-10">
         <div className="container mx-auto max-w-4xl relative">
           <div className="absolute inset-0 bg-primary transform -skew-y-2 rounded-3xl -z-10 translate-y-4 opacity-10"></div>
           <div className="bg-primary text-primary-foreground p-12 md:p-20 rounded-sm text-center shadow-xl relative overflow-hidden">
@@ -221,7 +567,7 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-32 px-6 bg-white text-center">
+      <section className="py-32 px-6 bg-white text-center relative z-10">
         <div className="container mx-auto max-w-2xl">
           <h2 className="text-4xl md:text-5xl font-serif mb-6">Torne Esta Festa Inesquecível</h2>
           <p className="text-xl text-muted-foreground mb-10">
@@ -239,7 +585,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-background py-16 px-6">
+      <footer className="bg-foreground text-background py-16 px-6 relative z-10">
         <div className="container mx-auto grid md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-2">
             <div className="font-serif text-2xl font-semibold mb-6">Mesa de Festa</div>
