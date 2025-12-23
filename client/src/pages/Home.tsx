@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, Clock, Heart, Star, Utensils, Gift, ChefHat } from "lucide-react";
+import { ArrowRight, BookOpen, Clock, Heart, Star, Utensils, Gift, ChefHat, Mail, Check } from "lucide-react";
 import heroImage from "@assets/generated_images/festive_christmas_dinner_table_editorial_shot.png";
 import cookieImage from "@assets/generated_images/festive_gingerbread_cookies_editorial_shot.png";
 import turkeyImage from "@assets/generated_images/golden_roasted_chester_turkey_platter.png";
@@ -79,6 +80,18 @@ const DecorativeCookies = () => {
 };
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleEmailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email.trim()) {
+      setIsSubmitted(true);
+      setEmail("");
+      setTimeout(() => setIsSubmitted(false), 3000);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans overflow-x-hidden selection:bg-primary/20 relative">
       
@@ -121,14 +134,52 @@ export default function Home() {
             <motion.p variants={fadeIn} className="text-xl text-muted-foreground mb-10 max-w-xl leading-relaxed">
               Uma coleção cuidadosamente selecionada de receitas aconchegantes e festivas, criadas para trazer calor, sabor e alegria às suas celebrações familiares.
             </motion.p>
-            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-primary text-primary-foreground px-8 py-4 rounded-sm text-lg font-medium hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2 group cursor-pointer">
-                Comprar Coleção
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="px-8 py-4 rounded-sm text-lg font-medium border border-input hover:bg-muted/50 transition-all text-foreground/80 cursor-pointer">
-                Ver Menu de Amostra
-              </button>
+            <motion.div variants={fadeIn} className="max-w-md">
+              <form onSubmit={handleEmailSubmit} className="flex flex-col gap-2">
+                <label htmlFor="email-newsletter" className="text-sm font-medium text-muted-foreground mb-2">
+                  Receba dicas de receitas e notícias exclusivas:
+                </label>
+                <div className="flex gap-2">
+                  <div className="flex-1 relative">
+                    <Mail className="absolute left-4 top-3.5 w-5 h-5 text-muted-foreground" />
+                    <input
+                      id="email-newsletter"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="seu.email@example.com"
+                      className="w-full pl-12 pr-4 py-4 rounded-sm border border-input bg-white text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="bg-primary text-primary-foreground px-6 py-4 rounded-sm font-medium hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2 group cursor-pointer whitespace-nowrap"
+                  >
+                    {isSubmitted ? (
+                      <>
+                        <Check className="w-5 h-5" />
+                        Inscrito!
+                      </>
+                    ) : (
+                      <>
+                        Inscrever
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      </>
+                    )}
+                  </button>
+                </div>
+                {isSubmitted && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="text-sm text-primary font-medium mt-1"
+                  >
+                    ✓ Obrigado! Você receberá nossas notícias em breve.
+                  </motion.p>
+                )}
+              </form>
             </motion.div>
             
             <motion.div variants={fadeIn} className="mt-12 flex items-center gap-4 text-sm text-muted-foreground">
