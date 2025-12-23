@@ -56,7 +56,7 @@ export default function Home() {
       <nav className="fixed w-full z-50 bg-background/90 backdrop-blur-sm border-b border-border/40">
         <div className="container mx-auto px-6 h-20 flex items-center justify-between">
           <div className="font-serif text-2xl font-semibold tracking-tight text-primary">
-            Mesa de Festa
+            Valiosas Receitas
           </div>
           <div className="hidden md:flex space-x-8 text-muted-foreground text-sm font-medium">
             <a href="#features" className="hover:text-primary transition-colors">Características</a>
@@ -95,7 +95,7 @@ export default function Home() {
                 </label>
                 <div className="flex gap-2">
                   <div className="flex-1 relative">
-                    <Mail className="absolute left-4 top-3.5 w-5 h-5 text-muted-foreground" />
+                    <Mail className="absolute left-4 top-5 w-5 h-5 text-muted-foreground" />
                     <input
                       id="email-newsletter"
                       type="email"
@@ -134,15 +134,6 @@ export default function Home() {
                   </motion.p>
                 )}
               </form>
-            </motion.div>
-            
-            <motion.div variants={fadeIn} className="mt-12 flex items-center gap-4 text-sm text-muted-foreground">
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-8 h-8 rounded-full bg-muted border-2 border-background overflow-hidden" />
-                ))}
-              </div>
-              <p>Apreciado por mais de 2 mil cozinheiros caseiros</p>
             </motion.div>
           </motion.div>
 
@@ -542,35 +533,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonial */}
-      <section id="testimonials" className="py-32 px-6 bg-background relative z-10">
-        <div className="container mx-auto max-w-4xl relative">
-          <div className="absolute inset-0 bg-primary transform -skew-y-2 rounded-3xl -z-10 translate-y-4 opacity-10"></div>
-          <div className="bg-primary text-primary-foreground p-12 md:p-20 rounded-sm text-center shadow-xl relative overflow-hidden">
-             {/* Abstract pattern */}
-             <div className="absolute top-0 right-0 p-12 opacity-10">
-                <Gift className="w-64 h-64" />
-             </div>
-             
-             <div className="relative z-10">
-               <div className="flex justify-center mb-8 gap-1 text-secondary">
-                 {[1,2,3,4,5].map(i => <Star key={i} className="fill-current w-5 h-5" />)}
-               </div>
-               <blockquote className="text-2xl md:text-3xl font-serif leading-relaxed mb-8">
-                 "Normalmente fico estressada com o cozimento de festas, mas este guia tornou tudo tão simples e elegante. Minha família não parou de elogiar o assado!"
-               </blockquote>
-               <div className="flex items-center justify-center gap-4">
-                 <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center font-serif text-xl">M</div>
-                 <div className="text-left">
-                   <div className="font-medium">Mariana Silva</div>
-                   <div className="text-primary-foreground/70 text-sm">Cozinheira Caseira, São Paulo</div>
-                 </div>
-               </div>
-             </div>
-          </div>
-        </div>
-      </section>
-
       {/* Final CTA */}
       <section className="py-32 px-6 bg-white text-center relative z-10">
         <div className="container mx-auto max-w-2xl">
@@ -593,7 +555,7 @@ export default function Home() {
       <footer className="bg-foreground text-background py-16 px-6 relative z-10">
         <div className="container mx-auto grid md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-2">
-            <div className="font-serif text-2xl font-semibold mb-6">Mesa de Festa</div>
+            <div className="font-serif text-2xl font-semibold mb-6">Valiosas Receitas</div>
             <p className="text-white/60 max-w-sm">
               Celebrando a alegria da comida e das reuniões. Uma publicação digital dedicada a tornar suas festas mais quentes e deliciosas.
             </p>
@@ -617,7 +579,7 @@ export default function Home() {
           </div>
         </div>
         <div className="container mx-auto mt-16 pt-8 border-t border-white/10 text-center text-white/40 text-sm">
-          © 2024 Mesa de Festa E-book. Todos os direitos reservados.
+          © 2025 Valiosas Receitas E-book. Todos os direitos reservados.
         </div>
       </footer>
     </div>
