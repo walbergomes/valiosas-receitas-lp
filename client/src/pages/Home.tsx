@@ -34,50 +34,6 @@ const staggerContainer = {
   }
 };
 
-// Floating cookie animation
-const floatingCookie = {
-  animate: {
-    y: [0, -20, 0],
-    x: [0, 10, 0],
-    rotate: [0, 5, 0],
-  },
-  transition: {
-    duration: 4,
-    repeat: Infinity,
-    ease: [0.42, 0, 0.58, 1] as [number, number, number, number]
-  }
-};
-
-// Decorative floating elements
-const DecorativeCookies = () => {
-  const cookies = [
-    { id: 1, top: "10%", left: "5%", delay: 0 },
-    { id: 2, top: "20%", right: "8%", delay: 0.5 },
-    { id: 3, bottom: "15%", left: "12%", delay: 1 },
-    { id: 4, top: "60%", right: "5%", delay: 1.5 },
-  ];
-
-  return (
-    <>
-      {cookies.map((cookie) => (
-        <motion.div
-          key={cookie.id}
-          animate={floatingCookie.animate}
-          transition={{ ...floatingCookie.transition, delay: cookie.delay }}
-          className="fixed pointer-events-none opacity-70 z-0"
-          style={{
-            top: cookie.top,
-            left: cookie.left,
-            right: cookie.right,
-            bottom: cookie.bottom,
-          }}
-        >
-          <div className="text-4xl">🍪</div>
-        </motion.div>
-      ))}
-    </>
-  );
-};
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -95,8 +51,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans overflow-x-hidden selection:bg-primary/20 relative">
       
-      {/* Decorative floating cookies */}
-      <DecorativeCookies />
       
       {/* Navigation */}
       <nav className="fixed w-full z-50 bg-background/90 backdrop-blur-sm border-b border-border/40">
