@@ -64,9 +64,9 @@ export default function Home() {
             <a href="#about" className="hover:text-primary transition-colors">Sobre</a>
             <a href="#testimonials" className="hover:text-primary transition-colors">Histórias</a>
           </div>
-          <button className="bg-primary text-primary-foreground px-6 py-2.5 rounded-sm font-medium hover:bg-primary/90 transition-all shadow-sm cursor-pointer relative z-10">
+          <a href="https://app.sonharpay.com.br/new-checkout/DE09806E?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleAO4qJdleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAad93WB1EKbxI814KAasEExymwJdUwo1oKtEo44nTLqGWcAyW4HniwaQho6RaQ_aem_BeYfn566PGV9ArA-FrCqog" target="_blank" className="bg-primary text-primary-foreground px-6 py-2.5 rounded-sm font-medium hover:bg-primary/90 transition-all shadow-sm cursor-pointer relative z-10">
             Comprar E-book
-          </button>
+          </a>
         </div>
       </nav>
 
@@ -541,11 +541,11 @@ export default function Home() {
             Baixe sua cópia hoje e comece a planejar a celebração perfeita. Entrega digital instantânea.
           </p>
           <div className="flex flex-col items-center gap-4">
-            <button className="w-full sm:w-auto bg-primary text-primary-foreground px-10 py-5 rounded-sm text-xl font-medium hover:bg-primary/90 transition-all shadow-xl hover:-translate-y-1 cursor-pointer">
-              Comprar E-book — R$ 79,00
-            </button>
+            <a href="https://app.sonharpay.com.br/new-checkout/DE09806E?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleAO4qJdleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAad93WB1EKbxI814KAasEExymwJdUwo1oKtEo44nTLqGWcAyW4HniwaQho6RaQ_aem_BeYfn566PGV9ArA-FrCqog" target="_blank" className="w-full sm:w-auto bg-primary text-primary-foreground px-10 py-5 rounded-sm text-xl font-medium hover:bg-primary/90 transition-all shadow-xl hover:-translate-y-1 cursor-pointer">
+              Comprar E-book — R$ 19,97
+            </a>
             <p className="text-sm text-muted-foreground mt-4">
-              Inclui 40+ receitas, listas de compras imprimíveis e harmonizações de vinhos.
+              Inclui 40 receitas.
             </p>
           </div>
         </div>
